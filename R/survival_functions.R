@@ -15,7 +15,7 @@ coxPH_plot = function(surv){
   
   res.cox<-coxph(Surv(`Survival.in.days`,Censored) ~ Cluster, data = surv)
   
-  p1 <- KMplot(ggsobj, summary(res.cox)$conf.int[2], summary(res.cox)$coefficients[5])
+  p1 <- survminer::KMplot(ggsobj, summary(res.cox)$conf.int[2], summary(res.cox)$coefficients[5])
   #print(p1)
   
   return(list(plot = p1, HR = summary(res.cox)$conf.int[2], pvalue = summary(res.cox)$coefficients[5]))
