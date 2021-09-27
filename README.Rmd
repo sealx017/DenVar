@@ -1,6 +1,6 @@
 ---
 title: "DenVar"
-author: Souvik Seal
+#author: Souvik Seal
 output: github_document
 bibliography: ref.bib
 ---

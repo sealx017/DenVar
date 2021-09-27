@@ -1,6 +1,5 @@
 DenVar
 ================
-Souvik Seal
 
 This is a R package implementing the proposed method from the paper
 “DenVar: Density-based Variation analysis of multiplex imaging data”.
