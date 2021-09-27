@@ -8,7 +8,18 @@
 #' @return The function coxPH_plot fits a CoxPH model with the cluster labels and plots the KM curves specific to the 
 #' clusters accompanied by the estimated Hazard Ratio (HR) and the p-value for testing its significance 
 #' @export
+KMplot<-function(ggsurvobject, HR, pval)
+{
+  
+  print(ggsurvobject$plot + ggplot2::annotate(
+    "text",
+    x = Inf, y = Inf,
+    vjust = 1, hjust = 1,
+    label = paste0("HR = ", round(HR, 4), "\n p < ", round(pval,4)),
+    size = 5))
+}
 
+#' @export
 coxPH_plot = function(surv){
   ggsobj <- ggsurvplot(fit = survminer::surv_fit(Surv(`Survival.in.days`,Censored) ~ Cluster, data = surv), 
                        xlab = "Days", ylab = "Proportion alive",risk.table = T)

@@ -2,6 +2,7 @@
 
 export(Array_KDE)
 export(JSD_matrix)
+export(KMplot)
 export(coxPH_plot)
 export(coxme_model)
 export(dens_univ)
