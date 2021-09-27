@@ -1,5 +1,4 @@
 #'@title Fit CoxPH model with cluster labels and plot the KM curves
-#' 
 #' Fit a CoxPH model with the cluster labels obtained by hierarchical clustering of the computed JSD matrix
 #'
 #' @param surv is a data.frame with a column named "SampleID" denoting the patient IDs, a column named 
