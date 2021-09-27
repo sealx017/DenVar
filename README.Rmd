@@ -23,9 +23,11 @@ First, we load our package: DenVar and a few other required packages. One can in
 ```{r loading packages, message=FALSE}
 
 require(DenVar)
+require(LaplacesDemon)
 require(pheatmap)
 require(ggplot2)
-require(LaplacesDemon)
+require(survminer)
+require(coxme)
 
 ```
 
@@ -34,8 +36,8 @@ require(LaplacesDemon)
 Next, we import the training dataset named as "train_data", which has marker data (34 many) for different cells from two different images. The first two columns: "SampleID" and "cellLabelInImage" of the training dataset respectively correspond to the image number and the cell label inside that image. The third column ("Group") corresponds to the annotated cell type. 
 
 ```{r loading the marker expression and the clinical data}
-PD1_data = read.csv("Data/PD1_TNBC_MIBI.csv")
-clinical_data = read.csv("Data/Survival_TNBC_MIBI.csv")
+PD1_data = read.csv("Data/PD1_TNBC_MIBI.csv")[,-1]
+clinical_data = read.csv("Data/Survival_TNBC_MIBI.csv")[,-1]
 ```
 
 
@@ -45,5 +47,28 @@ Next, we import the training dataset named as "train_data", which has marker dat
 
 ```{r Computing the KDEs and the JSD matrix}
 
+KDE_of_all = Array_KDE(Data = PD1_data, ngrids = 1024)
+JSD_matrix_between_all = JSD_matrix(KDE_of_all)
 
 ```
+
+
+## Hierarchical clustering based on the JSD matrix
+
+Next, we import the training dataset named as "train_data", which has marker data (34 many) for different cells from two different images. The first two columns: "SampleID" and "cellLabelInImage" of the training dataset respectively correspond to the image number and the cell label inside that image. The third column ("Group") corresponds to the annotated cell type. 
+
+```{r hclust on the JSD matrix}
+
+hier_clustering = hclust(as.dist(JSD_matrix_between_all), method="ward.D")
+hier_groups = as.data.frame(cutree(hier_clustering, k=2)); colnames(hier_groups) = "Cluster"
+
+```
+
+## CoxPH model 
+
+Next, we import the training dataset named as "train_data", which has marker data (34 many) for different cells from two different images. The first two columns: "SampleID" and "cellLabelInImage" of the training dataset respectively correspond to the image number and the cell label inside that image. The third column ("Group") corresponds to the annotated cell type. 
+
+```{r CoxPh model with the clusters}
+
+surv = cbind(clinical_data, hier_groups)
+
