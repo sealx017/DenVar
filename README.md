@@ -6,12 +6,20 @@ This is a R package implementing the proposed method from the paper
 
 ## Loading required packages
 
-First, we load our package: DenVar and a few other required packages.
+First, we load our package, DenVar and a few other required packages.
 One can install the developmental version of DenVar by running the
 command: **devtools::install\_github(‘sealx017/DenVar’)**.
 
 ``` r
 devtools::install_github('sealx017/DenVar')
+#      checking for file ‘/private/var/folders/2l/4_bl_pj11ll0m0dfh0pjsdnr0000gq/T/RtmpoOuTmC/remotes8e2735f56f10/sealx017-DenVar-af94264/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/2l/4_bl_pj11ll0m0dfh0pjsdnr0000gq/T/RtmpoOuTmC/remotes8e2735f56f10/sealx017-DenVar-af94264/DESCRIPTION’
+#   ─  preparing ‘DenVar’:
+#      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
+#   ─  checking for LF line-endings in source and make files and shell scripts
+#   ─  checking for empty or unneeded directories
+#   ─  building ‘DenVar_0.0.0.9000.tar.gz’
+#      
+# 
 require(DenVar)
 require(LaplacesDemon)
 require(pheatmap)

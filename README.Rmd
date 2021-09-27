@@ -17,7 +17,7 @@ This is a R package implementing the proposed method from the paper "DenVar: Den
 
 ## Loading required packages
 
-First, we load our package: DenVar and a few other required packages. One can install the developmental version of DenVar by running the command: **devtools::install_github('sealx017/DenVar')**. 
+First, we load our package, DenVar and a few other required packages. One can install the developmental version of DenVar by running the command: **devtools::install_github('sealx017/DenVar')**. 
 
 
 ```{r loading packages, message=FALSE}
@@ -99,3 +99,5 @@ res.coxme = coxme_model(surv, JSD_matrix_between_all)
 print(res.coxme)
 
 ```
+
+
