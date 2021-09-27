@@ -19,7 +19,7 @@ coxPH_plot = function(surv){
                  data = surv)
   p1 <- KMplot(ggsobj, summary(res.cox)$conf.int[2], summary(res.cox)$coefficients[5])
   print(p1)
-  return(list(HR = summary(res.cox)$conf.int[2], pvalue = summary(res.cox)$coefficients[5])
+  return(list(HR = summary(res.cox)$conf.int[2], pvalue = summary(res.cox)$coefficients[5]))
 }
 
 
