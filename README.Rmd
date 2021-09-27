@@ -2,7 +2,7 @@
 title: "DenVar"
 #author: Souvik Seal
 output: github_document
-bibliography: ref.bib
+bibliography: [packages.bib, ref.bib]
 ---
 
 ```{r setup, include=FALSE}
@@ -101,4 +101,6 @@ res.coxme = coxme_model(surv, JSD_matrix_between_all)
 print(res.coxme)
 
 ```
-
+```{r, include=FALSE}
+knitr::write_bib(file = 'packages.bib')
+```
