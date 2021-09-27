@@ -24,11 +24,10 @@ coxPH_plot = function(surv){
 
 coxme_model = function(surv, JSD_mat){
   exp_dist = exp(-JSD_mat)
-  #res.cox_simple<-coxph(Surv(`Survival.in.days`,Censored) ~ 1, data = surv)
   res.coxme<-coxme(Surv(`Survival.in.days`,Censored) ~ (1|SampleID), data = surv,
                    varlist = coxmeMlist(list(exp_dist),rescale = FALSE,
                    pdcheck = TRUE, positive = TRUE))
   LRT <- 2*(res.coxme$loglik[2] - res.cox$loglik[1])
   LRT_pvalue <- 1-pchisq(LRT,1)
-  return(list(Variance_estimate = , LRT = LRT, LRT_pvalue = LRT_pvalue))
+  return(list(Variance_estimate = res.coxme$vcoef, LRT = LRT, LRT_pvalue = LRT_pvalue))
 }

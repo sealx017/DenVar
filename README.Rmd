@@ -83,6 +83,6 @@ Next, we import the training dataset named as "train_data", which has marker dat
 ```{r CoxME model with the clusters}
 
 res.coxme = coxme_model(surv, JSD_matrix_between_all)
-print(coxplot$plot)
+print(coxme)
 
 ```
