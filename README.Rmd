@@ -71,4 +71,4 @@ Next, we import the training dataset named as "train_data", which has marker dat
 ```{r CoxPh model with the clusters}
 
 surv = cbind(clinical_data, hier_groups)
-
+coxplot = coxPH_plot(surv)
