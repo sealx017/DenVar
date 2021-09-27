@@ -84,7 +84,7 @@ Using the vector of cluster-labels, we fit a CoxPH model and plot the Kaplan-Mey
 
 surv = cbind(clinical_data, hier_groups)
 coxplot = coxPH_plot(surv)
-print(coxplot$plot)
+#print(coxplot$plot)
 
 ```
 

@@ -87,10 +87,8 @@ coxplot = coxPH_plot(surv)
 <img src="README_files/figure-gfm/CoxPh model with the clusters-1.png" width="100%" />
 
 ``` r
-print(coxplot$plot)
+#print(coxplot$plot)
 ```
-
-<img src="README_files/figure-gfm/CoxPh model with the clusters-2.png" width="100%" />
 
 ## CoxPH model with random effect (Coxme)
 
