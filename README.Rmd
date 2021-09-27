@@ -1,6 +1,8 @@
 ---
 title: "DenVar"
+author: Souvik Seal
 output: github_document
+bibliography: ref.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -99,5 +101,4 @@ res.coxme = coxme_model(surv, JSD_matrix_between_all)
 print(res.coxme)
 
 ```
-
 
