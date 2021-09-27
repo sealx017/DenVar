@@ -26,6 +26,7 @@ require(DenVar)
 require(LaplacesDemon)
 require(pheatmap)
 require(ggplot2)
+require(survival)
 require(survminer)
 require(coxme)
 
