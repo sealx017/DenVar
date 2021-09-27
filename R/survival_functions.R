@@ -11,14 +11,14 @@
 #' @export
 
 coxPH_plot = function(surv){
-  ggsobj <- ggsurvplot(fit = survminer::surv_fit(Surv(`Survival.in.days`,Censored) ~ Cluster, 
-                       data = surv), 
-                       xlab = "Days", 
-                       ylab = "Proportion alive",risk.table = T)
-  res.cox<-coxph(Surv(`Survival`,Censored) ~ Cluster, 
-                 data = surv)
+  ggsobj <- ggsurvplot(fit = survminer::surv_fit(Surv(`Survival.in.days`,Censored) ~ Cluster, data = surv), 
+                       xlab = "Days", ylab = "Proportion alive",risk.table = T)
+  
+  res.cox<-coxph(Surv(`Survival.in.days`,Censored) ~ Cluster, data = surv)
+  
   p1 <- KMplot(ggsobj, summary(res.cox)$conf.int[2], summary(res.cox)$coefficients[5])
   print(p1)
+  
   return(list(HR = summary(res.cox)$conf.int[2], pvalue = summary(res.cox)$coefficients[5]))
 }
 
