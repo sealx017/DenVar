@@ -25,7 +25,7 @@ coxPH_plot = function(surv){
 coxme_model = function(surv, JSD_mat){
   exp_dist = exp(-JSD_mat)
   #res.cox_simple<-coxph(Surv(`Survival.in.days`,Censored) ~ 1, data = surv)
-  res.coxme<-coxme(Surv(`Survival.in.days`,Censored) ~ 1, data = surv,
+  res.coxme<-coxme(Surv(`Survival.in.days`,Censored) ~ (1|SampleID), data = surv,
                    varlist = coxmeMlist(list(exp_dist),rescale = FALSE,
                    pdcheck = TRUE, positive = TRUE))
   LRT <- 2*(res.coxme$loglik[2] - res.cox$loglik[1])

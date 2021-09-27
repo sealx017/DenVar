@@ -64,7 +64,7 @@ hier_groups = as.data.frame(cutree(hier_clustering, k=2)); colnames(hier_groups)
 
 ```
 
-## CoxPH model 
+## CoxPH model and KM plots
 
 Next, we import the training dataset named as "train_data", which has marker data (34 many) for different cells from two different images. The first two columns: "SampleID" and "cellLabelInImage" of the training dataset respectively correspond to the image number and the cell label inside that image. The third column ("Group") corresponds to the annotated cell type. 
 
@@ -72,3 +72,17 @@ Next, we import the training dataset named as "train_data", which has marker dat
 
 surv = cbind(clinical_data, hier_groups)
 coxplot = coxPH_plot(surv)
+print(coxplot$plot)
+
+```
+
+## Coxme model
+
+Next, we import the training dataset named as "train_data", which has marker data (34 many) for different cells from two different images. The first two columns: "SampleID" and "cellLabelInImage" of the training dataset respectively correspond to the image number and the cell label inside that image. The third column ("Group") corresponds to the annotated cell type. 
+
+```{r CoxME model with the clusters}
+
+res.coxme = coxme_model(surv, JSD_matrix_between_all)
+print(coxplot$plot)
+
+```
