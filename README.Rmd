@@ -50,7 +50,7 @@ We compute the KDE of PD-1 expression in all the patients and store it in an arr
 ```{r Computing the KDEs and the JSD matrix}
 
 KDE_of_all = Array_KDE(Data = PD1_data, ngrids = 1024)
-JSD_matrix_between_all = JSD_matrix(KDE_of_all)
+JSD_matrix_between_all = JSD_matrix(Array_dens = KDE_of_all, Data = PD1_data)
 
 ```
 ## Heatmap of the JSD matrix

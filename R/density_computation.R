@@ -78,7 +78,8 @@ Array_KDE = function(Data, ngrids = 1024){
   }
   
 #' @export
-JSD_matrix = function(Array_dens){
+JSD_matrix = function(Array_dens, Data){
+  sel_images = unique(Data$SampleID)
   num_images = dim(Array_dens[,1,])[1]
   rpd_mat = matrix(0, num_images, num_images)
   for( i in 1:num_images){
