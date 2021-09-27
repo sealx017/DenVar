@@ -2,28 +2,21 @@
 % Please edit documentation in R/survival_functions.R
 \name{coxPH_plot}
 \alias{coxPH_plot}
-\title{Compute KDE and JSD
-
-Compute kernel density estimate (KDE) of a marker expression and
-Jensen Shannon distance between two computed KDEs}
+\title{Fit CoxPH model with cluster labels and plot the KM curves
+Fit a CoxPH model with the cluster labels obtained by hierarchical clustering of the computed JSD matrix}
 \usage{
-coxPH_plot(x)
+coxPH_plot(surv)
 }
 \arguments{
-\item{x}{is a list of marker expression values in different cells of a patient}
-
-\item{m}{is the number of grids used in KDE, default is m = 1024}
-
-\item{px}{is the KDE of first marker}
-
-\item{py}{is the KDE of second marker}
+\item{surv}{is a data.frame with a column named "SampleID" denoting the patient IDs, a column named
+"Survival.in.days" denoting the patient survival, a column named "Censored" denoting the censoring status, and
+a column named "Cluster" denoting the cluster label of thge patients found using JSD based hierarchical clusetring}
 }
 \value{
-The function dens_univ returns KDE and the function jensen_shannon_dist returns the JSD between two densities
+The function coxPH_plot fits a CoxPH model with the cluster labels and plots the KM curves specific to the
+clusters accompanied by the estimated Hazard Ratio (HR) and the p-value for testing its significance
 }
 \description{
-Compute KDE and JSD
-
-Compute kernel density estimate (KDE) of a marker expression and
-Jensen Shannon distance between two computed KDEs
+Fit CoxPH model with cluster labels and plot the KM curves
+Fit a CoxPH model with the cluster labels obtained by hierarchical clustering of the computed JSD matrix
 }
