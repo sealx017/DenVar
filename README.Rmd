@@ -21,7 +21,7 @@ First, we load our package, DenVar and a few other required packages. One can in
 
 
 ```{r loading packages, message=FALSE}
-devtools::install_github('sealx017/DenVar')
+#devtools::install_github('sealx017/DenVar')
 require(DenVar)
 require(LaplacesDemon)
 require(pheatmap)
