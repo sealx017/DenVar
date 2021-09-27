@@ -45,6 +45,7 @@ dens_univ = function(x, ngrids = 1024){
   return(list(den, den_grid))
 }
 
+#' @export
 jensen_shannon_dist = function(px,py){
   px = px/sum(px); py = py/sum(py); 
   px[which(px < .Machine$double.xmin)] <- .Machine$double.xmin
@@ -55,6 +56,7 @@ jensen_shannon_dist = function(px,py){
 } 
 
 
+#' @export
 Array_KDE = function(Data, ngrids = 1024){
   sel_images = unique(Data$SampleID)
   Array_dens = array(NA, dim = c(length(sel_images), 2, ngrids))
@@ -75,7 +77,7 @@ Array_KDE = function(Data, ngrids = 1024){
   return(Array_dens)
   }
   
-
+#' @export
 JSD_matrix = function(Array_dens){
   num_images = dim(Array_dens[,1,])[1]
   rpd_mat = matrix(0, num_images, num_images)

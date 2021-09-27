@@ -22,6 +22,7 @@ coxPH_plot = function(surv){
 }
 
 
+#' @export
 coxme_model = function(surv, JSD_mat){
   exp_dist = exp(-JSD_mat)
   res.coxme<-coxme(Surv(`Survival.in.days`,Censored) ~ (1|SampleID), data = surv,
