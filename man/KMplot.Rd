@@ -15,7 +15,7 @@ a column named "Cluster" denoting the cluster label of thge patients found using
 \value{
 The function, coxPH_plot fits a CoxPH model with the cluster labels and plots the KM curves specific to the
 clusters accompanied by the estimated Hazard Ratio (HR) and the p-value for testing its significance. The function,
-coxme_model fits a CoxPH model with a random effect capturing the characteristics of the JSD matrix (Coxme model).
+coxme_model fits a CoxPH model with a random effects capturing the characteristics of the JSD matrix (Coxme model).
 }
 \description{
 Fit CoxPH (and Coxme) model with cluster labels and plot the KM curves
