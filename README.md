@@ -90,7 +90,7 @@ coxplot = coxPH_plot(surv)
 #print(coxplot$plot)
 ```
 
-## CoxPH model with random effect (Coxme)
+## CoxPH model with random effects (Coxme)
 
 We use the computed JSD matrix directly in a CoxPH model with random
 effect (also known as Coxme). We show the estimated variance component
