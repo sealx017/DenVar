@@ -1,4 +1,4 @@
-DenVar <img src="Denvar_logo.png" width="100" height="100">
+<img src="Denvar_logo.png" width="200" height="150">
 ================
 
 This is a R package implementing the proposed method from the paper
