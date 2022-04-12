@@ -1,4 +1,4 @@
-DenVar ![Image](Denvar_logo.png)
+DenVar ![Image](Denvar_logo.png = 50x50)
 ================
 
 This is a R package implementing the proposed method from the paper
