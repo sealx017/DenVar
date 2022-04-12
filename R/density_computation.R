@@ -1,10 +1,10 @@
 #'@title Compute KDE and JSD
-#' 
+#'
 #' Compute kernel density estimate (KDE) of a marker expression using the function, dens_univ,
 #' compute Jensen Shannon Distance (JSD) between two computed KDEs using the function, jensen_shannon_dist,
-#' compute the KDE of all the patients of the dataset using the function, Array_KDE, and 
+#' compute the KDE of all the patients of the dataset using the function, Array_KDE, and
 #' compute Jensen Shannon Distance matrix between all the patients using the function, JSD_matrix.
-#' 
+#'
 #' @param x is a list of marker expression values in different cells of a patient
 #' @param ngrids is the number of grids used in KDE, default is m = 1024
 #' @param px is the KDE of first marker
@@ -12,15 +12,15 @@
 #' @param Data is the dataset having one column named "SampleID" with the patient IDs and one column with marker expression values
 #' @return The function, dens_univ returns KDE and the grid-points as a list, the function, jensen_shannon_dist returns the JSD
 #' between two densities the function, Array_KDE returns KDE (and the grid-points) of all the patients in a form of a 3d array,
-#' and the function, JSD_matrix returns the JSD distance between all the images in a matrix form.  
+#' and the function, JSD_matrix returns the JSD distance between all the images in a matrix form.
 #' @export
 
 dens_univ = function(x, ngrids = 1024){
-  n = length(x)
   min_coef = 0
   max_coef = 1
-  den = matrix(0, nrow = n, ncol = ngrids)
-  den_grid = matrix(0, nrow = n, ncol = ngrids)
+  den = matrix(0, nrow = 1, ncol = ngrids)
+  den_grid = matrix(0, nrow = 1, ncol = ngrids)
+  x = list(x)
   for(i in 1:n){
        temp_vec = c(x[[i]][!is.na(x[[i]])])
        if(length(temp_vec)==0){
@@ -47,13 +47,13 @@ dens_univ = function(x, ngrids = 1024){
 
 #' @export
 jensen_shannon_dist = function(px,py){
-  px = px/sum(px); py = py/sum(py); 
+  px = px/sum(px); py = py/sum(py);
   px[which(px < .Machine$double.xmin)] <- .Machine$double.xmin
   py[which(py < .Machine$double.xmin)] <- .Machine$double.xmin
   pmean = 1/2*(px + py)
   JSD = sqrt(KLD(px, pmean)$sum.KLD.px.py + KLD(py, pmean)$sum.KLD.px.py)
   return(JSD)
-} 
+}
 
 
 #' @export
@@ -76,7 +76,7 @@ Array_KDE = function(Data, ngrids = 1024){
   }
   return(Array_dens)
   }
-  
+
 #' @export
 JSD_matrix = function(Array_dens, Data){
   sel_images = unique(Data$SampleID)
