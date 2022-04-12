@@ -1,6 +1,6 @@
 <img src="Denvar_logo.png" width="200" height="150">
 
-This is a R package implementing the proposed method from the paper
+This is an R package implementing the proposed method from the paper
 “DenVar: Density-based Variation analysis of multiplex imaging data”.
 
 ## Loading required packages
