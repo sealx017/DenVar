@@ -1,4 +1,4 @@
-DenVar ![Image](Denvar_logo.tif)
+DenVar ![Image](Denvar_logo.png)
 ================
 
 This is a R package implementing the proposed method from the paper
