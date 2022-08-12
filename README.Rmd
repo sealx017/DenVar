@@ -42,14 +42,13 @@ We import the example datasets named, "Marker_data_TNBC_MIBI.csv" and "clinical_
 
 PD1_data = read.csv("Data/Marker_data_TNBC_MIBI.csv")
 clinical_data = read.csv("Data/clinical_data_TNBC_MIBI.csv")
-#clinical_data$Censored = ifelse(clinical_data$Censored==2, 0, 1) 
-  
+
 ```
 
 
 ## Computing the KDEs and the JSD matrix
 
-We compute the KDE of PD-1 expression in all the patients and store it in an array. We keep number of grid points (ngrids) in the KDE at 1024. Using the array of KDEs, we compute pairwise Jensen-Shannon Distance (JSD) between the patient densities. We create the JSD matrix having distances between all possible patient pairs.
+We compute the KDE of PD-1 expression in all the subjects and store it in an array. We keep number of grid points (ngrids) in the KDE at 1024. Using the array of KDEs, we compute the pairwise Jensen-Shannon Distance (JSD) between the subject-specific densities. We create the JSD matrix having distances between all possible patient pairs.
 
 ```{r Computing the KDEs and the JSD matrix}
 
@@ -70,7 +69,7 @@ cluster_cols = TRUE,show_colnames = T, show_rownames = T,treeheight_row=0,treehe
 
 ## Hierarchical clustering based on the JSD matrix
 
-We use the JSD matrix for hierarchical clusetring of the patients into two meanigful clusters.
+We subject the JSD matrix to hierarchical clustering to group the subjects into two meaningful clusters.
 
 ```{r hclust on the JSD matrix}
 
@@ -81,7 +80,9 @@ hier_groups = as.data.frame(cutree(hier_clustering, k=2)); colnames(hier_groups)
 
 ## CoxPH model with Recurrence Outcome and KM plot
 
-Using the vector of cluster-labels, we fit a CoxPH model and plot the Kaplan-Meyer (KM) curves stratified by the clusters. We display the estimated Hazard Ratio (HR) and the corresponding p-value as well.
+Using the recurrence outcome (time and censoring-indicator), we fit a CoxPH model and plot the Kaplan-Meyer (KM) curves stratified by the clusters. We display the estimated Hazard Ratio (HR) and the corresponding p-value as well. Note that we have created a 
+matrix named "surv" by merging the outcome information and the vector of cluster-labels
+and changed the names of the censoring-indicator and time columns to "Censored" and "Time" respectively.
 
 ```{r CoxPh model with the clusters}
 
@@ -89,13 +90,13 @@ surv = cbind(clinical_data[,c(1:3)], hier_groups)
 colnames(surv)[2:3] = c("Censored", "Time")
 print(head(surv))
 coxplot = coxPH_plot(surv, name = "Non-recurrence probability")
-print(coxplot$plot)
+#print(coxplot$plot)
 
 ```
 
 ## CoxPH model with random effects (Coxme) with Recurrence Outcome 
 
-We use the computed JSD matrix directly in a CoxPH model with random effect (also known as Coxme). We show the estimated variance component and the corresponding LRT for testing its significance.
+Using the recurrence outcome, we use the computed JSD matrix directly in a CoxPH model with random effect (also known as Coxme). We show the estimated variance component and the corresponding LRT for testing its significance.
 
 
 ```{r Coxme model with the clusters}
@@ -111,24 +112,26 @@ knitr::write_bib(file = 'packages.bib')
 
 ## CoxPH model with Survival Outcome and KM plot
 
-Using the vector of cluster-labels, we fit a CoxPH model and plot the Kaplan-Meyer (KM) curves stratified by the clusters. We display the estimated Hazard Ratio (HR) and the corresponding p-value as well.
+Using the survival outcome (time and censoring indicator), we fit a CoxPH model and plot the Kaplan-Meyer (KM) curves stratified by the clusters. We display the estimated Hazard Ratio (HR) and the corresponding p-value as well. Note that we have created a 
+matrix named "surv" by merging the outcome information and the vector of cluster-labels
+and changed the names of the censoring-indicator and time columns to "Censored" and "Time" respectively.
 
-```{r CoxPh model with the clusters}
+```{r CoxPh model with the clusters and survival}
 
 surv = cbind(clinical_data[,c(1, 4:5)], hier_groups)
 colnames(surv)[2:3] = c("Censored", "Time")
 print(head(surv))
 coxplot = coxPH_plot(surv, name = "Survival probability")
-print(coxplot$plot)
+#print(coxplot$plot)
 
 ```
 
 ## CoxPH model with random effects (Coxme) with Survival Outcome 
 
-We use the computed JSD matrix directly in a CoxPH model with random effect (also known as Coxme). We show the estimated variance component and the corresponding LRT for testing its significance.
+Using the survival outcome, we use the computed JSD matrix directly in a CoxPH model with random effect (also known as Coxme). We show the estimated variance component and the corresponding LRT for testing its significance.
 
 
-```{r Coxme model with the clusters}
+```{r Coxme model with the clusters and survival}
 
 res.coxme = coxme_model(surv, JSD_matrix_between_all)
 print(res.coxme)
