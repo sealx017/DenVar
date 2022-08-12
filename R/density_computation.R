@@ -20,27 +20,28 @@ dens_univ = function(x, ngrids = 1024){
   max_coef = 1
   den = matrix(0, nrow = 1, ncol = ngrids)
   den_grid = matrix(0, nrow = 1, ncol = ngrids)
-  x = list(x)
+  #x = list(x)
   for(i in 1:ngrids){
-       temp_vec = c(x[[i]][!is.na(x[[i]])])
+       #temp_vec = c(x[[i]][!is.na(x[[i]])])
+       temp_vec = c(x[!is.na(x)])
        if(length(temp_vec)==0){
-         den[i,] = rep(0,ngrids)
+         den = rep(0,ngrids)
          }
       else{
       if(range(temp_vec)[1]==range(temp_vec)[2]){
-        den[i,1] = 1
+        den = 1
       }
       else if(length(temp_vec)<5){
         s = density(temp_vec, from = min_coef, to = max_coef,
         n = ngrids, bw = mean(range(temp_vec)))
-        den[i,] = s$y
-        den_grid[i,] = s$x
+        den = s$y
+        den_grid = s$x
       }
       else{
         s = density(temp_vec, from = min_coef, to = max_coef,
          n = ngrids, bw='nrd0')
-        den[i,] = s$y
-        den_grid[i,] = s$x
+        den = s$y
+        den_grid = s$x
       }}}
   return(list(den, den_grid))
 }
@@ -58,17 +59,17 @@ jensen_shannon_dist = function(px,py){
 
 #' @export
 Array_KDE = function(Data, ngrids = 1024){
-  sel_images = unique(Data$SampleID)
+  sel_images = unique(Data$ID)
   Array_dens = array(NA, dim = c(length(sel_images), 2, ngrids))
   x = NULL
   which_images = 1
-  len_cov = 1
+  #len_cov = 1
   for(images in sel_images){
-   data_image = Data[Data$SampleID==images,]
-  for(i in 1:len_cov)
-  {
-    x[[i]] = na.omit(as.matrix(data_image[,2]))
-  }
+   data_image = Data[Data$ID==images,]
+  #for(i in 1:len_cov)
+  #{
+    x = na.omit(as.matrix(data_image[,2]))
+  #}
     den = dens_univ(x, ngrids = ngrids)
     Array_dens[which_images,1,] = den[[1]]
     Array_dens[which_images,2,] = den[[2]]
@@ -79,7 +80,7 @@ Array_KDE = function(Data, ngrids = 1024){
 
 #' @export
 JSD_matrix = function(Array_dens, Data){
-  sel_images = unique(Data$SampleID)
+  sel_images = unique(Data$ID)
   num_images = dim(Array_dens[,1,])[1]
   rpd_mat = matrix(0, num_images, num_images)
   for( i in 1:num_images){
