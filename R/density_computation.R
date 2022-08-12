@@ -21,7 +21,7 @@ dens_univ = function(x, ngrids = 1024){
   den = matrix(0, nrow = 1, ncol = ngrids)
   den_grid = matrix(0, nrow = 1, ncol = ngrids)
   x = list(x)
-  for(i in 1:n){
+  for(i in 1:ngrids){
        temp_vec = c(x[[i]][!is.na(x[[i]])])
        if(length(temp_vec)==0){
          den[i,] = rep(0,ngrids)
