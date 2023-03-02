@@ -26,7 +26,7 @@ require(coxme)
 We import the example datasets named, “Marker_data_TNBC_MIBI.csv” and
 “clinical_data_TNBC_MIBI.csv” extracted from the TNBC data used in Keren
 et al. (2018). The former has the PD1 marker-expression data in 170, 171
-cells from 33 subjects. The expression data has been scaled to lie between 0 and 1.
+cells from 33 subjects. The expression data should be scaled to lie between 0 and 1.
 The latter has recurrence and survival data of
 those same subjects. Both the datasets have a column named “ID” denoting
 the individual subject IDs.
