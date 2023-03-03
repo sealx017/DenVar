@@ -9,7 +9,7 @@ compute Jensen Shannon Distance (JSD) between two computed KDEs using the functi
 compute the KDE of all the patients of the dataset using the function, Array_KDE, and
 compute Jensen Shannon Distance matrix between all the patients using the function, JSD_matrix.}
 \usage{
-dens_univ(x, ngrids = 1024)
+dens_univ(x, ngrids = 1024, min_coef = 0, max_coef = 1)
 }
 \arguments{
 \item{x}{is a list of marker expression values in different cells of a patient}
