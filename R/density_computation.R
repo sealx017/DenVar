@@ -15,9 +15,8 @@
 #' and the function, JSD_matrix returns the JSD distance between all the images in a matrix form.
 #' @export
 
-dens_univ = function(x, ngrids = 1024){
-  min_coef = 0
-  max_coef = 1
+dens_univ = function(x, ngrids = 1024, min_coef = 0,  max_coef = 1){
+
   den = matrix(0, nrow = 1, ncol = ngrids)
   den_grid = matrix(0, nrow = 1, ncol = ngrids)
   #x = list(x)
@@ -58,7 +57,7 @@ jensen_shannon_dist = function(px,py){
 
 
 #' @export
-Array_KDE = function(Data, ngrids = 1024){
+Array_KDE = function(Data, ngrids = 1024, min_coef = 0,  max_coef = 1){
   sel_images = unique(Data$ID)
   Array_dens = array(NA, dim = c(length(sel_images), 2, ngrids))
   x = NULL
@@ -70,7 +69,7 @@ Array_KDE = function(Data, ngrids = 1024){
   #{
     x = na.omit(as.matrix(data_image[,2]))
   #}
-    den = dens_univ(x, ngrids = ngrids)
+    den = dens_univ(x, ngrids = ngrids, min_coef, max_coef)
     Array_dens[which_images,1,] = den[[1]]
     Array_dens[which_images,2,] = den[[2]]
     which_images = which_images + 1
