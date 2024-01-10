@@ -1,5 +1,5 @@
 #'@title Compute KDE and JSD
-#'
+
 #' Compute kernel density estimate (KDE) of a marker expression using the function, dens_univ,
 #' compute Jensen Shannon Distance (JSD) between two computed KDEs using the function, jensen_shannon_dist,
 #' compute the KDE of all the patients of the dataset using the function, Array_KDE, and
@@ -19,29 +19,22 @@ dens_univ = function(x, ngrids = 1024, min_coef = 0,  max_coef = 1){
 
   den = matrix(0, nrow = 1, ncol = ngrids)
   den_grid = matrix(0, nrow = 1, ncol = ngrids)
-  #x = list(x)
-  for(i in 1:ngrids){
-       #temp_vec = c(x[[i]][!is.na(x[[i]])])
-       temp_vec = c(x[!is.na(x)])
-       if(length(temp_vec)==0){
-         den = rep(0,ngrids)
-         }
-      else{
-      if(range(temp_vec)[1]==range(temp_vec)[2]){
-        den = 1
-      }
-      else if(length(temp_vec)<5){
-        s = density(temp_vec, from = min_coef, to = max_coef,
-        n = ngrids, bw = mean(range(temp_vec)))
-        den = s$y
-        den_grid = s$x
-      }
-      else{
-        s = density(temp_vec, from = min_coef, to = max_coef,
-         n = ngrids, bw='nrd0')
-        den = s$y
-        den_grid = s$x
-      }}}
+  temp_vec = c(x[!is.na(x)])
+  if(length(temp_vec)==0){
+    den = rep(0,ngrids)
+  }else{
+    if(range(temp_vec)[1]==range(temp_vec)[2]){den = 1}
+    else if(length(temp_vec)<5){
+      s = density(temp_vec, from = min_coef, to = max_coef,
+                  n = ngrids, bw = mean(range(temp_vec)))
+      den = s$y
+      den_grid = s$x
+    }else{
+      s = density(temp_vec, from = min_coef, to = max_coef,
+                  n = ngrids, bw='nrd0')
+      den = s$y
+      den_grid = s$x
+    }}
   return(list(den, den_grid))
 }
 

@@ -3,7 +3,6 @@
 \name{dens_univ}
 \alias{dens_univ}
 \title{Compute KDE and JSD
-
 Compute kernel density estimate (KDE) of a marker expression using the function, dens_univ,
 compute Jensen Shannon Distance (JSD) between two computed KDEs using the function, jensen_shannon_dist,
 compute the KDE of all the patients of the dataset using the function, Array_KDE, and
@@ -29,7 +28,6 @@ and the function, JSD_matrix returns the JSD distance between all the images in 
 }
 \description{
 Compute KDE and JSD
-
 Compute kernel density estimate (KDE) of a marker expression using the function, dens_univ,
 compute Jensen Shannon Distance (JSD) between two computed KDEs using the function, jensen_shannon_dist,
 compute the KDE of all the patients of the dataset using the function, Array_KDE, and
